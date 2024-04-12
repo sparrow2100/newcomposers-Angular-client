@@ -32,7 +32,6 @@ export class FetchApiDataService {
       .post(apiUrl + 'login', userDetails)
       .pipe(catchError(this.handleError));
   }
-
   // GET ALL COMPOSERS
   public getAllComposers(): Observable<any> {
     const token = localStorage.getItem('token');
