@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //Angular Material Imports
@@ -16,10 +16,38 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
+
+//components
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
+import { ComposerCardComponent } from './composer-card/composer-card.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { ProfileComponent } from './profile/profile.component';
+import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
+
+//for add to favourites icon
+import { MatIconModule } from '@angular/material/icon';
+
+//Routing
+import { RouterModule, Routes } from '@angular/router';
+import { ComposerDetailsComponent } from './composer-details/composer-details.component';
+
+const appRoutes: Routes = [
+  { path: 'welcome', component: WelcomePageComponent },
+  { path: 'composers', component: ComposerCardComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
+];
 
 @NgModule({
-  declarations: [AppComponent, UserRegistrationFormComponent, UserLoginFormComponent],
+  declarations: [
+    AppComponent,
+    UserRegistrationFormComponent,
+    UserLoginFormComponent,
+    ComposerCardComponent,
+    WelcomePageComponent,
+    ProfileComponent,
+    ComposerDetailsComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -32,6 +60,8 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
     MatCardModule,
     MatFormFieldModule,
     MatSnackBarModule,
+    RouterModule.forRoot(appRoutes),
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

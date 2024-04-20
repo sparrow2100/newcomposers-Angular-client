@@ -26,6 +26,7 @@ export class FetchApiDataService {
   }
 
   // USER LOGIN
+  //"https://women-composers-api.onrender.com/login"
   public userLogin(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http
@@ -36,7 +37,7 @@ export class FetchApiDataService {
   public getAllComposers(): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
-      .get(apiUrl + 'movies', {
+      .get(apiUrl + 'composers', {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -92,8 +93,6 @@ export class FetchApiDataService {
   // '/users/:username', GET
   public getUser(username: string): Observable<any> {
     return this.http.get(apiUrl + 'users/' + username);
-    //const user = JSON.parse(localStorage.getItem('user) || '{}')
-    //return user
   }
 
   // GET A USER'S FAVOURITE COMPOSERS
@@ -135,7 +134,7 @@ export class FetchApiDataService {
   public updateUser(username: string, userDetails: any): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
-      .put(apiUrl + 'users/' + username, userDetails, {
+      .put(apiUrl + 'users/' + username, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -181,7 +180,8 @@ export class FetchApiDataService {
       console.error('Some error occurred:', error.error.message);
     } else {
       console.error(
-        `Error Status code ${error.status}, ` + `Error body is: ${error.error}`
+        `Error Status code ${error.status}, ` +
+          `Error body is: ${JSON.stringify(error.error)}`
       );
     }
     return throwError('Something bad happened; please try again later.');

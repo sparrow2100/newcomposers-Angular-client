@@ -1,26 +1,26 @@
 <mat-card>
-  <mat-card-header>
-    <mat-card-title>Login</mat-card-title>
+  <mat-card-header class="header">
+    <mat-card-title class="title">Login</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <form>
       <mat-form-field>
         <input
           matInput
-          [(ngModel)]="userDetails.Username"
+          [(ngModel)]="userDetails.username"
           placeholder="Username"
           type="text"
-          name="Username"
+          name="username"
           required
         />
       </mat-form-field>
       <mat-form-field>
         <input
           matInput
-          [(ngModel)]="userDetails.Password"
+          [(ngModel)]="userDetails.password"
           type="password"
           placeholder="Password"
-          name="Password"
+          name="password"
           required
         />
       </mat-form-field>

@@ -1,0 +1,22 @@
+<div class="heading-div">
+  <h1>Women Composers</h1>
+  <div class="button-wrapper">
+    <button class="test-button" (click)="goToProfile()">Profile</button>
+    <button class="test-button" (click)="logOut()">Logout</button>
+  </div>
+</div>
+
+<div class="cards-div">
+  <mat-card *ngFor="let composer of composers" class="card">
+    <mat-card-header>
+      <mat-card-title>{{ composer.name }}</mat-card-title>
+    </mat-card-header>
+    <img src="{{ composer.img }}" alt="{{ composer.name }}" class="card-img" />
+    <mat-card-actions>
+      <mat-icon>favorite_border</mat-icon>
+      <button class="info-button" (click)="openComposerDetailsDialog()">
+        More
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,0 +1,26 @@
+h1 {
+  font-size: 3em;
+  text-align: center;
+}
+
+h2 {
+  font-weight: lighter;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.main-page {
+  background: linear-gradient(
+    140deg,
+    rgb(27, 53, 110) 0%,
+    rgb(14, 32, 71) 100%
+  );
+  color: #ffffff;
+  height: 100%;
+  padding-top: 50px;
+}
+
+.button-container {
+  width: 15%;
+  margin: 50px auto;
+}
