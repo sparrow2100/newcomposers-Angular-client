@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input, Inject } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-composer-details',
@@ -7,13 +8,8 @@ import { FetchApiDataService } from '../fetch-api-data.service';
   styleUrls: ['./composer-details.component.scss'],
 })
 export class ComposerDetailsComponent {
-  composers: any[] = [];
-  constructor(public fetchApiData: FetchApiDataService) {}
-  getComposers(): void {
-    this.fetchApiData.getAllComposers().subscribe((resp: any) => {
-      this.composers = resp;
-      console.log(this.composers);
-      return this.composers;
-    });
+  composer: any;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+    this.composer = data.composer;
   }
 }

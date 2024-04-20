@@ -7,16 +7,17 @@
 </div>
 
 <div class="cards-div">
-  <mat-card *ngFor="let composer of composers" class="card">
+  <mat-card
+    *ngFor="let composer of composers"
+    class="card"
+    (click)="openComposerDetailsDialog(composer)"
+  >
     <mat-card-header>
       <mat-card-title>{{ composer.name }}</mat-card-title>
     </mat-card-header>
     <img src="{{ composer.img }}" alt="{{ composer.name }}" class="card-img" />
     <mat-card-actions>
       <mat-icon>favorite_border</mat-icon>
-      <button class="info-button" (click)="openComposerDetailsDialog()">
-        More
-      </button>
     </mat-card-actions>
   </mat-card>
 </div>

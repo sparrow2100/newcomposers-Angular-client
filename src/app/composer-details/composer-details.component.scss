@@ -1,7 +1,37 @@
-.title {
+mat-card {
+  color: #0e2047;
+  line-height: 1.5;
+  padding: 25px;
+}
+
+mat-card-header {
+  padding-bottom: 25px;
+}
+
+mat-card-title {
   font-size: 2em;
+}
+
+mat-card-subtitle {
+  color: #0e2047;
+}
+
+li {
+  font-size: 1.5em;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 .subtitle {
   font-size: 1.5em;
+}
+
+.works {
+  padding-top: 25px;
 }

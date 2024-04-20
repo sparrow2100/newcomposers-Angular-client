@@ -38,9 +38,12 @@ export class ComposerCardComponent {
   }
 
   //open a dialog with a composer's details when a card is clicked
-  openComposerDetailsDialog(): void {
+  openComposerDetailsDialog(composer: any): void {
     this.dialog.open(ComposerDetailsComponent, {
       width: '75%',
+      data: {
+        composer,
+      },
     });
   }
 

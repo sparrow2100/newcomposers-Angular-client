@@ -1,10 +1,35 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title class="title">[Composer Name]</mat-card-title>
+    <mat-card-title class="bold">{{ composer.name }}</mat-card-title>
+    <mat-card-subtitle class="subtitle italic">{{
+      composer.life.lifespan
+    }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <mat-card-subtitle class="subtitle">[Lifespan]</mat-card-subtitle>
-    <mat-card-subtitle class="subtitle">[Era]</mat-card-subtitle>
-    <mat-card-subtitle class="subtitle">[Bio]</mat-card-subtitle>
+    <mat-card-subtitle class="subtitle">{{
+      composer.life.bio
+    }}</mat-card-subtitle>
+    <div class="works">
+      <mat-card-subtitle class="subtitle bold"
+        >Some notable works:</mat-card-subtitle
+      >
+      <ul>
+        <li>
+          {{ composer.works[0].piece }}: {{ composer.works[0].description }} ({{
+            composer.works[0].date
+          }})
+        </li>
+        <li>
+          {{ composer.works[1].piece }}: {{ composer.works[1].description }} ({{
+            composer.works[1].date
+          }})
+        </li>
+        <li>
+          {{ composer.works[2].piece }}: {{ composer.works[2].description }} ({{
+            composer.works[2].date
+          }})
+        </li>
+      </ul>
+    </div>
   </mat-card-content>
 </mat-card>

@@ -23,18 +23,6 @@ h1 {
   height: 100%;
 }
 
-.info-button {
-  background-color: #ffffff;
-  color: #0e2047;
-  font-weight: bold;
-  border: none;
-  padding: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 5px;
-  margin-left: 25px;
-}
-
 .cards-div {
   display: flex;
   background-color: #1b356e;
@@ -65,6 +53,7 @@ h1 {
 .card:hover {
   border: 2px solid #bac4db;
   transition: all 200ms ease-in-out;
+  cursor: pointer;
 }
 
 .info-button:hover {
