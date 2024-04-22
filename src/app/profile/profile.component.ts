@@ -12,9 +12,8 @@ import { Router } from '@angular/router';
 export class ProfileComponent implements OnInit {
   @Input() userDetails = { name: '', username: '', email: '', birthday: '' };
 
-  favouriteComposers: any[] = [];
-
-  userData = { name: '', username: '', email: '', birthday: '' };
+  userData: any;
+  favouriteComposers: ComposerInstance[] = [];
 
   constructor(
     private fetchApiData: FetchApiDataService,
@@ -23,6 +22,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.setUserdata();
+    this.fetchComposerData();
   }
 
   //update the user info once the form is submitted
@@ -36,15 +36,31 @@ export class ProfileComponent implements OnInit {
   setUserdata(): void {
     const storedUser = localStorage.getItem('storedUser');
 
-    if (!storedUser) {
-      return;
-    } else {
-      const parsedUser = JSON.parse(storedUser);
-      this.userData.name = parsedUser.name;
-      this.userData.username = parsedUser.username;
-      this.userData.email = parsedUser.email;
-      this.userData.birthday = parsedUser.birthday;
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      this.userData = user;
+      this.userDetails = {
+        birthday: this.userData.birthday,
+        email: this.userData.email,
+        name: this.userData.name,
+        username: this.userData.username,
+      };
     }
+  }
+
+  fetchComposerData() {
+    // Fetch all composers first
+    return this.fetchApiData
+      .getAllComposers()
+      .subscribe((response: ComposerInstance[]) => {
+        //response is an array of all composers
+        // filter composers and only select those that have the id found in userData.favouriteComposers
+        this.favouriteComposers = response.filter((composerFromAllComposers) =>
+          this.userData.favouriteComposers.includes(
+            composerFromAllComposers._id
+          )
+        );
+      });
   }
 
   logOut() {
@@ -59,7 +75,33 @@ export class ProfileComponent implements OnInit {
       .updateUser(this.userData.username, this.userDetails)
       .subscribe((response: any) => {
         this.userData = response;
+        localStorage.setItem('storedUser', JSON.parse(response));
+        this.setUserdata();
         return this.userData;
       });
   }
+}
+
+type ComposerInstance = {
+  life: ComposerLife;
+  _id: string;
+  name: string;
+  era: string;
+  img: string;
+  works: ComposerWork[];
+  imgCredit?: string;
+};
+
+interface ComposerLife {
+  fullName: string;
+  lifespan: string;
+  bio: string;
+  nationality: string;
+}
+
+interface ComposerWork {
+  _id: string;
+  piece: string;
+  date: string;
+  description: string;
 }

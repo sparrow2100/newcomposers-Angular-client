@@ -1,6 +1,11 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title class="bold">{{ composer.name }}</mat-card-title>
+    <div class="header-flex">
+      <mat-card-title class="bold">{{ composer.name }}</mat-card-title>
+      <mat-card-actions>
+        <mat-icon (click)="editFavourite()">favorite_border</mat-icon>
+      </mat-card-actions>
+    </div>
     <mat-card-subtitle class="subtitle italic">{{
       composer.life.lifespan
     }}</mat-card-subtitle>

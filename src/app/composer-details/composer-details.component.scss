@@ -6,6 +6,8 @@ mat-card {
 
 mat-card-header {
   padding-bottom: 25px;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 mat-card-title {
@@ -18,6 +20,11 @@ mat-card-subtitle {
 
 li {
   font-size: 1.5em;
+}
+
+.header-flex {
+  display: flex;
+  justify-content: space-between;
 }
 
 .italic {
@@ -34,4 +41,9 @@ li {
 
 .works {
   padding-top: 25px;
+}
+
+mat-icon:hover {
+  color: red;
+  cursor: pointer;
 }
