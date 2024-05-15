@@ -25,6 +25,11 @@ export class ComposerCardComponent {
     this.getComposers();
   }
 
+  /**
+   * this function makes an API call to the get all composers endpoint
+   * @returns all composers from the API
+   */
+
   getComposers(): void {
     this.fetchApiData.getAllComposers().subscribe((resp: any) => {
       this.composers = resp;
@@ -33,11 +38,22 @@ export class ComposerCardComponent {
     });
   }
 
+  /**
+   * navigates to the profile component when the profile button is clicked
+   */
+
   goToProfile(): void {
     this.router.navigate(['profile']);
   }
 
   //open a dialog with a composer's details when a card is clicked
+
+  /**
+   * navigates to the composer details component when a card is clicked
+   * and sends data about the currently selected composer to that component
+   * @param composer
+   */
+
   openComposerDetailsDialog(composer: any): void {
     this.dialog.open(ComposerDetailsComponent, {
       width: '75%',
@@ -46,6 +62,11 @@ export class ComposerCardComponent {
       },
     });
   }
+
+  /**
+   * logs out the user by removing the user object and token from localStorage
+   * and navigating to the welcome component
+   */
 
   logOut() {
     localStorage.removeItem('storedUser');

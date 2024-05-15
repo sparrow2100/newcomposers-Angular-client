@@ -18,6 +18,12 @@ export class FetchApiDataService {
   constructor(private http: HttpClient) {}
 
   //USER REGISTRATION
+
+  /**
+   * user registration
+   * @param userDetails
+   * @returns user data (JSON object)
+   */
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http
@@ -27,6 +33,11 @@ export class FetchApiDataService {
 
   // USER LOGIN
   //"https://women-composers-api.onrender.com/login"
+  /**
+   * user login
+   * @param userDetails
+   * @returns
+   */
   public userLogin(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http
@@ -34,6 +45,10 @@ export class FetchApiDataService {
       .pipe(catchError(this.handleError));
   }
   // GET ALL COMPOSERS
+  /**
+   * get all composers
+   * @returns all composer data
+   */
   public getAllComposers(): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
@@ -52,6 +67,11 @@ export class FetchApiDataService {
 
   // GET ONE COMPOSER
   // '/composers/:name', GET
+  /**
+   * get one composer
+   * @param name
+   * @returns data about a specific composer
+   */
   public getOneComposer(name: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
@@ -65,6 +85,11 @@ export class FetchApiDataService {
 
   // GET ERA
   // '/eras/:eraName', GET
+  /**
+   * get era
+   * @param eraName
+   * @returns data about one era
+   */
   public getOneEra(eraName: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
@@ -78,6 +103,10 @@ export class FetchApiDataService {
 
   // GET INFO ABOUT ALL ERAS
   // '/eras', GET
+  /**
+   * get all eras
+   * @returns data about all eras
+   */
   public getEras(): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
@@ -91,12 +120,22 @@ export class FetchApiDataService {
 
   // GET USER
   // '/users/:username', GET
+  /**
+   * get user info
+   * @param username
+   * @returns a user's info
+   */
   public getUser(username: string): Observable<any> {
     return this.http.get(apiUrl + 'users/' + username);
   }
 
   // GET A USER'S FAVOURITE COMPOSERS
   // '/users/:username/favouriteComposers/', GET
+  /**
+   * get a user's favourite composers
+   * @param username
+   * @returns an array of the user's favourite composers (IDs)
+   */
   public getFavourites(username: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
@@ -110,6 +149,14 @@ export class FetchApiDataService {
 
   // ADD A COMPOSER TO FAVOURITE COMPOSERS
   // '/users/:username/favouriteComposers/:composerId', POST
+
+  /**
+   * add a composer to favourite composers
+   * @param username
+   * @param composerId
+   * @param userDetails
+   * @returns updated array of composer IDs
+   */
   public addFavourite(
     username: string,
     composerId: string,
@@ -131,6 +178,13 @@ export class FetchApiDataService {
 
   // EDIT USER INFO
   // '/users/:username', PUT
+
+  /**
+   * update user info
+   * @param username
+   * @param userDetails
+   * @returns updated user info
+   */
   public updateUser(username: string, userDetails: any): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
@@ -144,6 +198,10 @@ export class FetchApiDataService {
 
   // DELETE USER
   // '/users/:username'
+  /**
+   * delete a user
+   * @param username
+   */
   public deleteUser(username: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
@@ -157,6 +215,13 @@ export class FetchApiDataService {
 
   // DELETE A COMPOSER FROM FAVOURITE COMPOSERS
   // '/users/:username/favouriteComposers/:composerId', DELETE
+
+  /**
+   * delete a composer from favourite composers
+   * @param username
+   * @param composerId
+   * @returns updated array of composer IDs
+   */
   public deleteFavourite(
     username: string,
     composerId: string

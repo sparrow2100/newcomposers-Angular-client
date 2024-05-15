@@ -28,10 +28,19 @@ export class ProfileComponent implements OnInit {
   //update the user info once the form is submitted
   updateUser(): void {}
 
-  //navigate to the composers component
+  /**
+   * navigate to the composers component when the composers
+   * button is clicked
+   */
+
   goToComposers(): void {
     this.router.navigate(['composers']);
   }
+
+  /**
+   * set the initial values of the form inputs to
+   * the values from the user object in localStorage
+   */
 
   setUserdata(): void {
     const storedUser = localStorage.getItem('storedUser');
@@ -48,13 +57,15 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  /**
+   * Fetches all composers and filters them for ids matching ids in the user's favourite composers
+   * @returns array of composers
+   */
+
   fetchComposerData() {
-    // Fetch all composers first
     return this.fetchApiData
       .getAllComposers()
       .subscribe((response: ComposerInstance[]) => {
-        //response is an array of all composers
-        // filter composers and only select those that have the id found in userData.favouriteComposers
         this.favouriteComposers = response.filter((composerFromAllComposers) =>
           this.userData.favouriteComposers.includes(
             composerFromAllComposers._id
@@ -63,13 +74,22 @@ export class ProfileComponent implements OnInit {
       });
   }
 
+  /**
+   * logs out the user by removing the user object and token from localStorage
+   * and navigating to the welcome component
+   */
+
   logOut() {
     localStorage.removeItem('storedUser');
     localStorage.removeItem('token');
     this.router.navigate(['welcome']);
   }
 
-  //update the user's data
+  /**
+   * update the user's info with the new values from the form
+   * @returns the updated user object
+   */
+
   updateUserData() {
     this.fetchApiData
       .updateUser(this.userData.username, this.userDetails)

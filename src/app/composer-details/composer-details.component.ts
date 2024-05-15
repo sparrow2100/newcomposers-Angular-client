@@ -33,6 +33,10 @@ export class ComposerDetailsComponent {
 
   /* GET FAVOURITE COMPOSERS */
 
+  /**
+   * save the localStorage user object to the user variable
+   */
+
   getFavourites() {
     const storedUser = localStorage.getItem('storedUser');
     if (storedUser) {
@@ -44,7 +48,11 @@ export class ComposerDetailsComponent {
     }
   }
 
-  /* COMPARE THE CURRENT COMPOSER ID TO THE FAVOURITE COMPOSERS ARRAY */
+  /**
+   * set isFavourite variable to true or false by comparing the
+   * current composer ID to the composer IDs in the user's
+   * favourite composers array
+   */
 
   checkFavourites(): void {
     if (this.user.favouriteComposers.includes(this.composer._id)) {
@@ -57,8 +65,9 @@ export class ComposerDetailsComponent {
   }
 
   /*
-   * If isFavourite is true, delete from favourites
-   * If isFavourite is false, add to favourites
+   * If isFavourite is true; delete from favourites,
+   * if isFavourite is false; add to favourites,
+   * send a message to the user, and
    * call when the heart button is clicked
    */
 

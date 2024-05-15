@@ -29,6 +29,11 @@ export class UserLoginFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  /**
+   * log in the user by sending the user details from the form and the token
+   * from localStorage via the userLogin endpoint
+   */
+
   logInUser(): void {
     this.fetchApiData.userLogin(this.userDetails).subscribe(
       (response) => {
